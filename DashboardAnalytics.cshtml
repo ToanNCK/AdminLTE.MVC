@@ -1,0 +1,303 @@
+﻿@{
+    ViewBag.Title = "Dashboard Analytics";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Dashboard Analytics
+            <small>Version 2.0</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Dashboard Analytics</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row" id="login-user">
+            <div class="col-lg-10">
+                <div id="embed-api-auth-container"></div>
+                <div id="view-selector-container"></div>
+                <div id="view-name"></div>
+            </div>
+            <div class="col-lg-2">
+                <div id="active-users-container"></div>
+            </div>
+        </div>
+        <!-- Info boxes -->
+        <div class="row">
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="info-box">
+                    <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">Người dùng đang hoạt động</span>
+                        <span class="info-box-number" id="is-user">0</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="info-box">
+                    <span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">Người dùng mới</span>
+                        <span class="info-box-number" id="is-user-new">0</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            <!-- fix for small devices only -->
+            <div class="clearfix visible-sm-block"></div>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="info-box">
+                    <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">Số phiên</span>
+                        <span class="info-box-number" id="is-phien">0</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Người dùng</h3>
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="text-center">
+                                    <strong>Người dùng trong tuần qua</strong>
+                                </p>
+                                <div class="chart">
+                                    <!-- Sales Chart Canvas -->
+                                    <div id="chart-container"></div>
+                                </div>
+                                <!-- /.chart-responsive -->
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-md-6">
+                                <p class="text-center">
+                                    <strong>Vị trí hàng đầu</strong>
+                                </p>
+                                <div class="chart">
+                                    <!-- Sales Chart Canvas -->
+                                    <div id="regions_div"></div>
+                                </div>
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="info-box">
+                    <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">Số phiên trên mỗi người dùng</span>
+                        <span class="info-box-number" id="is-phien-moi-user">0</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="info-box">
+                    <span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">Số trang / phiên</span>
+                        <span class="info-box-number" id="is-view-phien">0</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            <!-- fix for small devices only -->
+            <div class="clearfix visible-sm-block"></div>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="info-box">
+                    <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">Tỷ lệ thoát</span>
+                        <span class="info-box-number" id="is-exit">0<small> giây</small></span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- Main row -->
+        <div class="row">
+            <!-- Left col -->
+            <div class="col-md-6">
+                <!-- MAP & BOX PANE -->
+                <div class="box box-success">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Trang hoạt động hàng đầu</h3>
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body no-padding">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="pad">
+                                    <div class="gapi-analytics-data-chart">
+                                        <div class="google-visualization-table" style="position: relative; z-index: 0; max-width: 100%; max-height: 100%; width: 100%; height: auto;">
+                                            <div style="position: relative; overflow: auto; max-width: 100%; max-height: 100%; width: 100%; height: auto;">
+                                                <table id="tbl-page" class="google-visualization-table-table" style="width: 100%; height: auto;">
+                                                    <thead>
+                                                        <tr class="gapi-analytics-data-chart-styles-table-tr-head">
+                                                            <th scope="col" class="gapi-analytics-data-chart-styles-table-th unsorted">
+                                                                Tiêu đề
+                                                            </th>
+                                                            <th scope="col" class="gapi-analytics-data-chart-styles-table-th unsorted">
+                                                                Trang
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr class="hidden">
+                                                            <th class="title gapi-analytics-data-chart-styles-table-td"></th>
+                                                            <td class="path gapi-analytics-data-chart-styles-table-td"></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+            </div>
+            <!-- /.col -->
+            <div class="col-md-6">
+                <!-- MAP & BOX PANE -->
+                <div class="box box-success">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Trang hoạt động hàng đầu trong tuần</h3>
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body no-padding">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="pad">
+                                    <div class="gapi-analytics-data-chart">
+                                        <div class="google-visualization-table" style="position: relative; z-index: 0; max-width: 100%; max-height: 100%; width: 100%; height: auto;">
+                                            <div style="position: relative; overflow: auto; max-width: 100%; max-height: 100%; width: 100%; height: auto;">
+                                                <table id="main-chart-container" class="google-visualization-table-table" style="width: 100%; height: auto;">
+                                                    <thead>
+                                                        <tr class="gapi-analytics-data-chart-styles-table-tr-head">
+                                                            <th scope="col" class="gapi-analytics-data-chart-styles-table-th unsorted">
+                                                                Trang
+                                                            </th>
+                                                            <th scope="col" class="gapi-analytics-data-chart-styles-table-th unsorted">
+                                                                Người dùng
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr class="hidden">
+                                                            <th class="title gapi-analytics-data-chart-styles-table-td"></th>
+                                                            <td class="path gapi-analytics-data-chart-styles-table-td"></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+@section Styles
+{
+    <style>
+        .pad {
+            min-height: 238px;
+        }
+    </style>
+}
+
+@section Scripts
+{
+    <script src="~/Scripts/adminlte/plugins/google-analytics/popper.min.js"></script>
+    <script>
+        (function (w, d, s, g, js, fs) {
+            g = w.gapi || (w.gapi = {});
+            g.analytics = {
+                q: [],
+                ready: function (f) {
+                    this.q.push(f);
+                }
+            };
+            js = d.createElement(s);
+            fs = d.getElementsByTagName(s)[0];
+            js.src = 'https://apis.google.com/js/platform.js';
+            fs.parentNode.insertBefore(js, fs);
+            js.onload = function () {
+                g.load('analytics');
+            };
+        }(window, document, 'script'));
+    </script>
+    <script src="~/Scripts/adminlte/plugins/google-analytics/loader.js"></script>
+    <script src="~/Scripts/adminlte/plugins/google-analytics/moment.min.js"></script>
+    <script src="~/Scripts/adminlte/plugins/google-analytics/view-selector2.js"></script>
+    <script src="~/Scripts/adminlte/plugins/google-analytics/active-users.js"></script>
+    <script src="~/Scripts/adminlte/plugins/google-analytics/date-range-selector.js"></script>
+    <script src="~/Scripts/adminlte/plugins/google-analytics/script.js"></script>
+}
